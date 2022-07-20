@@ -4,6 +4,7 @@
     package="com.github.astat1cc.holybibleapp">
 
     <application
+        android:name=".core.BibleApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
