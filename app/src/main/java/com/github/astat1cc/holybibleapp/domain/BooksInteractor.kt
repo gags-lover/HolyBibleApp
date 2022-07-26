@@ -5,7 +5,7 @@ import com.github.astat1cc.holybibleapp.data.BooksRepository
 
 interface BooksInteractor {
 
-    suspend fun fetchBooks(): BookDomain
+    suspend fun fetchBooks(): BooksDomain
 
     class Base(
         private val repository: BooksRepository,

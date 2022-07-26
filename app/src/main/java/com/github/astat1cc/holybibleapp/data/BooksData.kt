@@ -5,14 +5,14 @@ import com.github.astat1cc.holybibleapp.core.Book
 import com.github.astat1cc.holybibleapp.domain.BooksDomain
 import java.lang.Exception
 
-sealed class BooksData : Abstract.Object<BooksDomain, BookDataToDomainMapper>() {
+sealed class BooksData : Abstract.Object<BooksDomain, BooksDataToDomainMapper>() {
 
     class Success(private val books: List<Book>) : BooksData() {
-        override fun map(mapper: BookDataToDomainMapper) = mapper.map(books)
+        override fun map(mapper: BooksDataToDomainMapper) = mapper.map(books)
     }
 
     class Fail(private val e: Exception) : BooksData() {
 
-        override fun map(mapper: BookDataToDomainMapper) = mapper.map(e)
+        override fun map(mapper: BooksDataToDomainMapper) = mapper.map(e)
     }
 }
