@@ -14,7 +14,7 @@ class BibleApp : Application() {
             androidContext(this@BibleApp)
             modules(
                 retrofitModule,
-                booksModule,
+                dataModule,
                 roomModule,
                 presentationModule
             )
