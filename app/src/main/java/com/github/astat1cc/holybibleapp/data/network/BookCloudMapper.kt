@@ -2,7 +2,6 @@ package com.github.astat1cc.holybibleapp.data.network
 
 import com.github.astat1cc.holybibleapp.core.Abstract
 import com.github.astat1cc.holybibleapp.core.Book
-import com.github.astat1cc.holybibleapp.data.BookData
 
 interface BookCloudMapper : Abstract.Mapper {
 

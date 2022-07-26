@@ -1,8 +1,11 @@
 package com.github.astat1cc.holybibleapp.data
 
+/**
+ * todo provide BooksRepository by data author
+ */
 interface BooksRepository {
 
-    suspend fun fetchBooks(): BookData
+    suspend fun fetchBooks(): BooksData
 
     class Base(
         private val cloudDataSource: BooksCloudDataSource,
@@ -11,18 +14,18 @@ interface BooksRepository {
         private val booksCacheMapper: BooksCacheMapper
     ) : BooksRepository {
 
-        override suspend fun fetchBooks(): BookData = try {
+        override suspend fun fetchBooks(): BooksData = try {
             val booksCache = cacheDataSource.fetchBooks()
             if (booksCache.isEmpty()) {
                 val booksCloud = cloudDataSource.fetchBooks()
                 val books = booksCloudMapper.map(booksCloud)
                 cacheDataSource.saveBooks(books)
-                BookData.Success(books)
+                BooksData.Success(books)
             } else {
-                BookData.Success(booksCacheMapper.map(booksCache))
+                BooksData.Success(booksCacheMapper.map(booksCache))
             }
         } catch (e: Exception) {
-            BookData.Fail(e)
+            BooksData.Fail(e)
         }
     }
 }
