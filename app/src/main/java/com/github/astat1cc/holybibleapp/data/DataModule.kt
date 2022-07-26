@@ -1,7 +1,6 @@
-package com.github.astat1cc.holybibleapp.core
+package com.github.astat1cc.holybibleapp.data
 
 import androidx.room.Room
-import com.github.astat1cc.holybibleapp.data.*
 import com.github.astat1cc.holybibleapp.data.cache.BookCacheMapper
 import com.github.astat1cc.holybibleapp.data.cache.BooksDatabase
 import com.github.astat1cc.holybibleapp.data.network.BookCloudMapper
@@ -50,7 +49,7 @@ val dataModule = module {
     single {
         provideBooksDao(database = get())
     }
-    single {
+    single<BooksRepository> {
         BooksRepository.Base(
             BooksCloudDataSource.Base(service = get()),
             BooksCacheDataSource.Base(booksDao = get()),

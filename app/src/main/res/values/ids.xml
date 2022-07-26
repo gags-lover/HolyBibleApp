@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="no_connection_error_message" type="id">No connection to the internet</item>
-    <item name="service_unavailable_error_message" type="id">Service unavailable now. Try later
-    </item>
-    <item name="something_went_wrong_error_message" type="id">Something went wrong</item>
-</resources>

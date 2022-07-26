@@ -6,10 +6,10 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val presentationModule = module {
-    single {
+    single<BooksCommunication> {
         BooksCommunication.Base()
     }
-    single {
+    single<ResourceProvider> {
         ResourceProvider.Base(androidContext())
     }
     single<BooksDomainToUiMapper> {

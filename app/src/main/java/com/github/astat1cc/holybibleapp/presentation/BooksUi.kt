@@ -25,9 +25,9 @@ sealed class BooksUi : Abstract.Object<Unit, Abstract.Mapper.Empty>() {
 
         override fun map(mapper: Abstract.Mapper.Empty) {
             val errorMessage = when (errorType) {
-                ErrorType.NO_CONNECTION -> resourceProvider.getString(R.id.no_connection_error_message)
-                ErrorType.SERVICE_UNAVAILABLE -> resourceProvider.getString(R.id.service_unavailable_error_message)
-                ErrorType.GENERIC_EXCEPTION -> resourceProvider.getString(R.id.something_went_wrong_error_message)
+                ErrorType.NO_CONNECTION -> resourceProvider.getString(R.string.no_connection_error_message)
+                ErrorType.SERVICE_UNAVAILABLE -> resourceProvider.getString(R.string.service_unavailable_error_message)
+                ErrorType.GENERIC_EXCEPTION -> resourceProvider.getString(R.string.something_went_wrong_error_message)
             }
             communication.show(errorMessage)
         }
