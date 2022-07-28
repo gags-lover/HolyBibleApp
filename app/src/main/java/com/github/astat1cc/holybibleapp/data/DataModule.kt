@@ -16,6 +16,14 @@ const val BASE_URL = "https://bible-go-api.rkeplin.com/v1/"
 
 val retrofitModule = module {
     single {
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+    }
+    single {
+        OkHttpClient.Builder().addInterceptor(get() as HttpLoggingInterceptor).build()
+    }
+    single {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(get())
@@ -36,14 +44,6 @@ val roomModule = module {
 
 val dataModule = module {
     single {
-        HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-    }
-    single {
-        OkHttpClient.Builder().addInterceptor(get() as HttpLoggingInterceptor).build()
-    }
-    single {
         provideBooksService(retrofit = get())
     }
     single {
@@ -52,7 +52,7 @@ val dataModule = module {
     single<BooksRepository> {
         BooksRepository.Base(
             BooksCloudDataSource.Base(service = get()),
-            BooksCacheDataSource.Base(booksDao = get()),
+            BooksCacheDataSource.Base(booksDao = get(), mapper = BookDataToCacheMapper.Base()),
             BooksCloudMapper.Base(BookCloudMapper.Base()),
             BooksCacheMapper.Base(BookCacheMapper.Base())
         )

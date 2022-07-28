@@ -13,7 +13,7 @@ val presentationModule = module {
         ResourceProvider.Base(androidContext())
     }
     single<BooksDomainToUiMapper> {
-        BaseBooksDomainToUiMapper(communication = get(), resourceProvider = get())
+        BaseBooksDomainToUiMapper(resourceProvider = get(), mapper = BaseBookDomainToUiMapper())
     }
     viewModel {
         MainViewModel(

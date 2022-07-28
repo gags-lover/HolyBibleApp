@@ -1,8 +1,5 @@
 package com.github.astat1cc.holybibleapp.data
 
-/**
- * todo provide BooksRepository by data author
- */
 interface BooksRepository {
 
     suspend fun fetchBooks(): BooksData
