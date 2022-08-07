@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:text="Genesis"
-    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
     android:id="@+id/textView"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding8" />
+    android:gravity="end"
+    android:padding="@dimen/padding8"
+    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+    android:textStyle="bold"
+    tools:text="Genesis" />

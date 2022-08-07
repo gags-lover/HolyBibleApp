@@ -7,8 +7,8 @@ interface BooksRepository {
     class Base(
         private val cloudDataSource: BooksCloudDataSource,
         private val cacheDataSource: BooksCacheDataSource,
-        private val booksCloudMapper: BooksCloudMapper,
-        private val booksCacheMapper: BooksCacheMapper
+        private val booksCloudMapper: BooksCloudToDataMapper,
+        private val booksCacheMapper: BooksCacheToDataMapper
     ) : BooksRepository {
 
         override suspend fun fetchBooks(): BooksData = try {

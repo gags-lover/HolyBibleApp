@@ -23,15 +23,18 @@ class BibleAdapter(
     override fun getItemViewType(position: Int) =
         when (books[position]) {
             is BookUi.Progress -> 0
-            is BookUi.Fail -> 1
-            is BookUi.Base -> 2
+            is BookUi.Base -> 1
+            is BookUi.Testament -> 2
+            is BookUi.Fail -> 3
+            else -> -1
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         when (viewType) {
             0 -> BibleViewHolder.FullscreenProgress(R.layout.progress_fullscreen.createView(parent))
-            1 -> BibleViewHolder.Fail(R.layout.fail_fullscreen.createView(parent), retry)
-            else -> BibleViewHolder.Base(R.layout.book_layout.createView(parent))
+            1 -> BibleViewHolder.Base(R.layout.book.createView(parent))
+            2 -> BibleViewHolder.Base(R.layout.testament.createView(parent))
+            else -> BibleViewHolder.Fail(R.layout.fail_fullscreen.createView(parent), retry)
         }
 
     override fun onBindViewHolder(holder: BibleViewHolder, position: Int) {

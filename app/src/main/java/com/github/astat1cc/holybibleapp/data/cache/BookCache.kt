@@ -9,10 +9,11 @@ import com.github.astat1cc.holybibleapp.data.cache.BookCache.Companion.TABLE_NAM
 @Entity(tableName = TABLE_NAME)
 data class BookCache(
     @PrimaryKey val id: Int = 1,
-    val name: String
-) : Abstract.Object<BookData, BookCacheMapper>() {
+    val name: String,
+    val testament: String
+) : Abstract.Object<BookData, BookCacheToDataMapper>() {
 
-    override fun map(mapper: BookCacheMapper) = mapper.map(id, name)
+    override fun map(mapper: BookCacheToDataMapper) = mapper.map(id, name, testament)
 
     companion object {
 

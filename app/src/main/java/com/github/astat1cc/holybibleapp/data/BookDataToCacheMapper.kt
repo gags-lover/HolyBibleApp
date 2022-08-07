@@ -5,10 +5,10 @@ import com.github.astat1cc.holybibleapp.data.cache.BookCache
 
 interface BookDataToCacheMapper : Abstract.Mapper {
 
-    fun map(id: Int, name: String): BookCache
+    fun map(id: Int, name: String, testament: String): BookCache
 
     class Base : BookDataToCacheMapper {
 
-        override fun map(id: Int, name: String) = BookCache(id, name)
+        override fun map(id: Int, name: String, testament: String) = BookCache(id, name, testament)
     }
 }

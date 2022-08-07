@@ -8,8 +8,8 @@ sealed class BookUi : Abstract.Object<Unit, BookUi.StringMapper>() {
 
     object Progress : BookUi()
 
-    class Base(
-        private val id: Int,
+    abstract class Info(
+        private val id: Int, // will be used to get chapters
         private val name: String
     ) : BookUi() {
 
@@ -17,6 +17,10 @@ sealed class BookUi : Abstract.Object<Unit, BookUi.StringMapper>() {
             mapper.map(name)
         }
     }
+
+    class Base(id: Int, name: String) : Info(id, name)
+
+    class Testament(id: Int, name: String) : Info(id, name)
 
     class Fail(private val message: String) : BookUi() {
 
