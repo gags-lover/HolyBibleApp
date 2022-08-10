@@ -1,6 +1,8 @@
 package com.github.astat1cc.holybibleapp.domain
 
 import com.github.astat1cc.holybibleapp.data.*
+import retrofit2.HttpException
+import java.net.UnknownHostException
 
 class BaseBooksDataToDomainMapper(
     private val mapper: BookDataToDomainMapper
@@ -20,11 +22,12 @@ class BaseBooksDataToDomainMapper(
         return BooksDomain.Success(mappedBooks)
     }
 
-    override fun map(e: Exception) = BooksDomain.Fail(e)
-
-    companion object {
-
-        const val NAME_OF_OLD_TESTAMENT_FROM_CLOUD_RESPONSE = "OT"
-    }
+    override fun map(e: Exception) = BooksDomain.Fail(
+        when (e) {
+            is UnknownHostException -> ErrorType.NO_CONNECTION
+            is HttpException -> ErrorType.SERVICE_UNAVAILABLE
+            else -> ErrorType.GENERIC_EXCEPTION
+        }
+    )
 }
 

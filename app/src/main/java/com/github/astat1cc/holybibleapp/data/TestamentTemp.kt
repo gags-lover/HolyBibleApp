@@ -1,7 +1,5 @@
 package com.github.astat1cc.holybibleapp.data
 
-import com.github.astat1cc.holybibleapp.domain.BaseBooksDataToDomainMapper
-
 interface TestamentTemp {
 
     fun save(testament: String)
@@ -23,10 +21,15 @@ interface TestamentTemp {
         override fun getTestamentType() = temp.toTestamentType()
 
         private fun String.toTestamentType() =
-            if (this == BaseBooksDataToDomainMapper.NAME_OF_OLD_TESTAMENT_FROM_CLOUD_RESPONSE) {
+            if (this == NAME_OF_OLD_TESTAMENT_FROM_CLOUD_RESPONSE) {
                 TestamentType.OLD
             } else {
                 TestamentType.NEW
             }
+    }
+
+    companion object {
+
+        const val NAME_OF_OLD_TESTAMENT_FROM_CLOUD_RESPONSE = "OT"
     }
 }
