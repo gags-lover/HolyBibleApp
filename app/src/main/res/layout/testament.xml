@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/textView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="end"
-    android:padding="@dimen/padding8"
-    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-    android:textStyle="bold"
-    tools:text="Genesis" />
+    android:background="@color/purple_700"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:padding="@dimen/padding8"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        tools:text="Genesis" />
+
+    <ImageView
+        android:id="@+id/expandImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:tint="@color/white"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_baseline_expand_less_24" />
+
+</LinearLayout>

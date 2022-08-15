@@ -18,11 +18,18 @@ val presentationModule = module {
             mapper = BaseBookDomainToUiMapper(resourceProvider = get())
         )
     }
+    single<CollapsedTestamentsCache> {
+        CollapsedTestamentsCache.Base(androidContext())
+    }
+    single<UiDataCache> {
+        UiDataCache.Base(collapsedTestamentsCache = get())
+    }
     viewModel {
         MainViewModel(
             interactor = get(),
             mapper = get(),
-            communication = get()
+            communication = get(),
+            uiDataCache = get()
         )
     }
 }

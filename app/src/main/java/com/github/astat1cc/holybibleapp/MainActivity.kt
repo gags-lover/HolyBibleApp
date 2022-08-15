@@ -18,11 +18,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = BibleAdapter(object : Retry {
-            override fun tryAgain() {
-                viewModel.fetchBooks()
+        val adapter = BibleAdapter(
+            object : Retry {
+                override fun tryAgain() {
+                    viewModel.fetchBooks()
+                }
+            },
+            object : BibleAdapter.CollapseListener {
+                override fun collapseOrExpand(id: Int) {
+                    viewModel.collapseOrExpand(id)
+                }
             }
-        })
+        )
         with(recyclerView) {
             this.adapter = adapter
             addItemDecoration(
@@ -34,5 +41,10 @@ class MainActivity : AppCompatActivity() {
             adapter.update(it)
         }
         viewModel.fetchBooks()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.saveCollapsedState()
     }
 }

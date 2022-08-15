@@ -12,18 +12,28 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     private val communication: BooksCommunication,
     private val interactor: BooksInteractor,
-    private val mapper: BooksDomainToUiMapper
+    private val mapper: BooksDomainToUiMapper,
+    private val uiDataCache: UiDataCache
 ) : ViewModel() {
 
     fun fetchBooks() {
         viewModelScope.launch(Dispatchers.IO) {
             communication.map(listOf(BookUi.Progress))
             val result: BooksUi = interactor.fetchBooks().map(mapper)
-            result.map(communication)
+            val actual = result.cache(uiDataCache)
+            actual.map(communication)
         }
     }
 
     fun observe(owner: LifecycleOwner, observer: Observer<List<BookUi>>) {
         communication.observe(owner, observer)
+    }
+
+    fun collapseOrExpand(id: Int) {
+        communication.map(uiDataCache.changeState(id))
+    }
+
+    fun saveCollapsedState() {
+        uiDataCache.saveState()
     }
 }
